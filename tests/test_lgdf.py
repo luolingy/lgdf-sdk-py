@@ -2,6 +2,7 @@
 import base64
 import hashlib
 import json
+import os
 import shutil
 import sys
 import time
@@ -23,8 +24,9 @@ PNG_BYTES = base64.b64decode(
 
 class LgdfV2Tests(unittest.TestCase):
     def setUp(self):
-        base = Path(__file__).resolve().parent / ".tmp"
-        base.mkdir(exist_ok=True)
+        env_base = os.environ.get("LGDF_TEST_BASE")
+        base = Path(env_base) if env_base else Path(__file__).resolve().parent / ".tmp"
+        base.mkdir(parents=True, exist_ok=True)
         self.work = base / f"lgdf-test-{time.time_ns()}"
         self.work.mkdir()
         self.addCleanup(shutil.rmtree, str(self.work), True)
