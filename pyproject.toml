@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lgdf-sdk"
+version = "1.0.1"
+description = "LGDF（分层通用数据格式）Python 解析器库：创建 / 读取 / 修改 / 校验 / 打包"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "CC0-1.0" }
+authors = [{ name = "a human" }]
+keywords = ["lgdf", "asset", "packaging", "format"]
+
+[project.optional-dependencies]
+schema = ["jsonschema>=4"]
+
+[project.scripts]
+lgdf = "lgdf.cli:main"
+
+[tool.setuptools]
+packages = ["lgdf"]
